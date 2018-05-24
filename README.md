@@ -1,8 +1,12 @@
 # Cool CMake config
 
-Advanced CMake compier flags for C and C++. Include these CMake files for extra build goodies. 
+Advanced CMake compier flags for C and C++.
 
-Supports GCC 4.9+ and Clang 3.9+ (+rudimentary support for MSVC).
+Supported compilers:
+
+  - GCC >= 4.9
+  - Clang >= 3.9
+  - MSVC >= 2013 (rudimentary support).
 
 ## Usage
 
@@ -20,10 +24,10 @@ Go beyond `-Wall` and `-Wextra` and make use of advanced compile-time checks and
 
  - Adjust `CMAKE_MODULE_PATH` and include `CoolCFlags.cmake`, or `CoolCXXFlags.cmake`, or both into your root `CMakeLists.txt`:
         
-        set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake/cool-cmake-config ${CMAKE_MODULE_PATH})
+       set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake/cool-cmake-config ${CMAKE_MODULE_PATH})
 
-        include(CoolCFlags)
-        include(CoolCXXFlags)
+       include(CoolCFlags)
+       include(CoolCXXFlags)
 
  - Build and run as usual
 
@@ -36,20 +40,20 @@ Create additional build types (the ones you set with `CMAKE_BUILD_TYPE` variable
 
  - Adjust `CMAKE_MODULE_PATH` and include `CoolSanitizers.cmake` into your root `CMakeLists.txt`:
 
-        set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake/cool-cmake-config ${CMAKE_MODULE_PATH})
+       set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake/cool-cmake-config ${CMAKE_MODULE_PATH})
 
-        include(CoolSanitizers)
+       include(CoolSanitizers)
 
   - run `cmake` with variable `CMAKE_BUILD_TYPE` set to one of the following:
   
-        - ASAN - for address sanitizer
-        - MSAN - for memory sanitizer
-        - TSAN - for thread sanitizer
-        - UBSAN - for undefined behavior sanitizer
+      - ASAN - for address sanitizer
+      - MSAN - for memory sanitizer
+      - TSAN - for thread sanitizer
+      - UBSAN - for undefined behavior sanitizer
 
         Example:
 
-        cmake -DCMAKE_BUILD_TYPE=ASAN
+            cmake -DCMAKE_BUILD_TYPE=ASAN
   
   - Build and run as usual 
 
