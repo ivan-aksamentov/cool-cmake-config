@@ -1,5 +1,4 @@
-
-set(WITH_VECTORIZE ON CACHE BOOL "Enable")
+set(WITH_VECTORIZE ON CACHE BOOL "Enable automatic vectorization")
 if(${WITH_VECTORIZE})
 
 if(CMAKE_C_COMPILER_ID MATCHES "GNU"
