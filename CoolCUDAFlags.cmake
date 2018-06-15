@@ -25,6 +25,7 @@
 
 set(CMAKE_CUDA_FLAGS " \
 ${CMAKE_CUDA_FLAGS} \
+--std=c++14 \
 --expt-extended-lambda \
 --expt-relaxed-constexpr \
 ")
