@@ -85,7 +85,6 @@ ${COOL_CXX_FLAGS_GCC5} \
 -Wnull-dereference \
 -Wshift-negative-value \
 -Wshift-overflow=2 \
--fconcepts \
 ")
 
 set(COOL_CXX_FLAGS_GCC7 " \
