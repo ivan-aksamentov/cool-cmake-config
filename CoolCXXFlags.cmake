@@ -181,22 +181,6 @@ set(COOL_SHARED_LINKER_FLAGS_MSVC_DEBUG "")
 set(COOL_SHARED_LINKER_FLAGS_MSVC_RELEASE "")
 
 
-function(AddCompilerOptionRelease cmakeOptionName compilerOption description)
-    set(${cmakeOptionName} "ON" CACHE STRING "${description}")
-    set_property(CACHE WITH_NATIVE_ARCH PROPERTY STRINGS ON OFF)
-
-    if(${cmakeOptionName})
-        set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} ${compilerOption}" PARENT_SCOPE)
-        set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} ${compilerOption}" PARENT_SCOPE)
-    endif()
-endfunction()
-
-AddCompilerOptionRelease(WITH_NATIVE_ARCH "-march=native" "Use -march=native in Release mode")
-AddCompilerOptionRelease(WITH_AUTOVECTORIZATION "-ftree-vectorize" "Use -march=native in Release mode")
-AddCompilerOptionRelease(WITH_ASSOCIATIVE_MATH "-fassociative-math" "Use -fassociative-math in Release mode")
-AddCompilerOptionRelease(WITH_FAST_MATH "-ffast-math" "Use -ffast-math in Release mode")
-
-
 if(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
     if(CMAKE_CXX_COMPILER_VERSION VERSION_GREATER_EQUAL 8)
         set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} ${COOL_CXX_FLAGS_GCC8}")
