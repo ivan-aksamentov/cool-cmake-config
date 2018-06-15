@@ -25,7 +25,6 @@
 
 set(CMAKE_CUDA_FLAGS " \
 ${CMAKE_CUDA_FLAGS} \
---warn-on-double-precision-use \
 --expt-extended-lambda \
 --expt-relaxed-constexpr \
 ")
