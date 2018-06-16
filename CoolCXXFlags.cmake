@@ -36,8 +36,6 @@ ${COOL_C_AND_CXX_FLAGS} \
 
 set(COOL_CXX_FLAGS_DEBUG " \
 -DDEBUG=1 \
--D_GLIBCXX_DEBUG=1 \
--D_LIBCPP_DEBUG=1 \
 -g \
 -O0 \
 -fstack-protector-all \
@@ -46,8 +44,6 @@ set(COOL_CXX_FLAGS_DEBUG " \
 
 set(COOL_CXX_FLAGS_DEBUG_FAST " \
 -DDEBUG=1 \
--D_GLIBCXX_DEBUG=1 \
--D_LIBCPP_DEBUG=1 \
 -g \
 -Og \
 -fstack-protector-all \

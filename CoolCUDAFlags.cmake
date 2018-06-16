@@ -35,6 +35,4 @@ ${CMAKE_CUDA_FLAGS_DEBUG} \
 -g \
 -G \
 -O0 \
--D_GLIBCXX_DEBUG=1 \
--D_LIBCPP_DEBUG=1 \
 ")
