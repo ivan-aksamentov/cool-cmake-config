@@ -27,7 +27,7 @@ include(CoolCommonFlags)
 
 
 set(COOL_C_FLAGS " \
-${COOL_C_AND_C_FLAGS} \
+${COOL_C_AND_CXX_FLAGS} \
 -Waggregate-return \
 -Wcast-qual \
 -Wstrict-prototypes \
@@ -35,23 +35,33 @@ ${COOL_C_AND_C_FLAGS} \
 ")
 
 set(COOL_C_FLAGS_DEBUG " \
+${COOL_C_FLAGS} \
 -DDEBUG=1 \
+-g \
 -O0 \
 -fstack-protector-all \
+-fno-inline \
+-fno-inline-small-functions \
 ")
 
 set(COOL_C_FLAGS_DEBUG_FAST " \
+${COOL_C_FLAGS} \
 -DDEBUG=1 \
--Og \
+-g \
+-O0 \
 -fstack-protector-all \
+-fno-inline \
+-fno-inline-small-functions \
 ")
 
 set(COOL_C_FLAGS_RELEASE " \
+${COOL_C_FLAGS} \
 -DNDEBUG=1 \
--fno-omit-frame-pointer \
+-fomit-frame-pointer \
 ")
 
 set(CMAKE_C_FLAGS_SANITIZE "\
+${COOL_C_FLAGS} \
 -g \
 -O1 \
 -DNDEBUG=1 \
@@ -60,9 +70,10 @@ set(CMAKE_C_FLAGS_SANITIZE "\
 ")
 
 
-set(COOL_C_FLAGS_GCC "${COOL_C_FLAGS}")
+set(COOL_CXX_FLAGS_GCC "")
 
 set(COOL_C_FLAGS_GCC5 " \
+${COOL_CXX_FLAGS_GCC} \
 -Wcast-qual \
 -Wvector-operation-performance \
 ")
@@ -167,9 +178,6 @@ set(COOL_SHARED_LINKER_FLAGS_MSVC_RELEASE "")
 
 
 if(CMAKE_C_COMPILER_ID MATCHES "GNU")
-    set(CMAKE_C_FLAGS  "${CMAKE_C_FLAGS} ${COOL_C_FLAGS}")
-    set(CMAKE_C_FLAGS  "${CMAKE_C_FLAGS} ${COOL_C_FLAGS_GCC}")
-
     if(CMAKE_C_COMPILER_VERSION VERSION_GREATER_EQUAL 8)
         set(CMAKE_C_FLAGS  "${CMAKE_C_FLAGS} ${COOL_C_FLAGS_GCC8}")
         set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS} ${COOL_C_FLAGS_DEBUG_FAST}")
@@ -192,9 +200,6 @@ if(CMAKE_C_COMPILER_ID MATCHES "GNU")
     set(CMAKE_SHARED_LINKER_FLAGS_RELEASE "${CMAKE_SHARED_LINKER_FLAGS_RELEASE} ${COOL_EXE_LINKER_FLAGS_GCC_RELEASE}")
 
 elseif(CMAKE_C_COMPILER_ID MATCHES "Clang")
-    set(CMAKE_C_FLAGS  "${CMAKE_C_FLAGS} ${COOL_C_FLAGS}")
-    set(CMAKE_C_FLAGS  "${CMAKE_C_FLAGS} ${COOL_C_FLAGS_CLANG}")
-
     if(CMAKE_C_COMPILER_VERSION VERSION_GREATER_EQUAL 6)
         set(CMAKE_C_FLAGS  "${CMAKE_C_FLAGS} ${COOL_C_FLAGS_CLANG6}")
         set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS} ${COOL_C_FLAGS_DEBUG_FAST}")
@@ -214,12 +219,9 @@ elseif(CMAKE_C_COMPILER_ID MATCHES "Clang")
     set(CMAKE_SHARED_LINKER_FLAGS_RELEASE "${CMAKE_SHARED_LINKER_FLAGS_RELEASE} ${COOL_EXE_LINKER_FLAGS_CLANG_RELEASE}")
 
 elseif(CMAKE_C_COMPILER_ID MATCHES "Intel")
-    # TODO
 
 elseif(CMAKE_C_COMPILER_ID MATCHES "MSVC")
-
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${COOL_MSVC_C_FLAGS}")
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${COOL_EXE_LINKER_FLAGS_MSVC}")
     set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} ${COOL_SHARED_LINKER_FLAGS_MSVC}")
-
 endif()

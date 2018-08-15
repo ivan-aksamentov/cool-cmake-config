@@ -35,27 +35,33 @@ ${COOL_C_AND_CXX_FLAGS} \
 ")
 
 set(COOL_CXX_FLAGS_DEBUG " \
+${COOL_CXX_FLAGS} \
 -DDEBUG=1 \
 -g \
 -O0 \
 -fstack-protector-all \
+-fno-inline \
 -fno-inline-small-functions \
 ")
 
 set(COOL_CXX_FLAGS_DEBUG_FAST " \
+${COOL_CXX_FLAGS} \
 -DDEBUG=1 \
 -g \
--Og \
+-O0 \
 -fstack-protector-all \
 -fno-inline \
+-fno-inline-small-functions \
 ")
 
 set(COOL_CXX_FLAGS_RELEASE " \
+${COOL_CXX_FLAGS} \
 -DNDEBUG=1 \
--fno-math-errno \
+-fomit-frame-pointer \
 ")
 
 set(CMAKE_CXX_FLAGS_SANITIZE "\
+${COOL_CXX_FLAGS} \
 -g \
 -O1 \
 -DNDEBUG=1 \
@@ -64,15 +70,13 @@ set(CMAKE_CXX_FLAGS_SANITIZE "\
 ")
 
 
-set(COOL_CXX_FLAGS_GCC "${COOL_CXX_FLAGS}")
+set(COOL_CXX_FLAGS_GCC "")
 
 set(COOL_CXX_FLAGS_GCC5 " \
 ${COOL_CXX_FLAGS_GCC} \
 -Wcast-qual \
 -Wvector-operation-performance \
 ")
-
-#-Wzero-as-null-pointer-constant \
 
 set(COOL_CXX_FLAGS_GCC6 " \
 ${COOL_CXX_FLAGS_GCC5} \
@@ -197,7 +201,6 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
     set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} ${COOL_CXX_FLAGS_RELEASE}")
     set(CMAKE_CXX_FLAGS_SANITIZE "${CMAKE_CXX_FLAGS_SANITIZE} ${COOL_CXX_FLAGS_SANITIZE}")
 
-
 elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
     if(CMAKE_CXX_COMPILER_VERSION VERSION_GREATER_EQUAL 6)
         set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} ${COOL_CXX_FLAGS_CLANG6}")
@@ -218,11 +221,8 @@ elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 
 elseif(CMAKE_CXX_COMPILER_ID MATCHES "Intel")
 
-
 elseif(CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
-
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${COOL_MSVC_CXX_FLAGS}")
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${COOL_EXE_LINKER_FLAGS_MSVC}")
     set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} ${COOL_SHARED_LINKER_FLAGS_MSVC}")
-
 endif()
