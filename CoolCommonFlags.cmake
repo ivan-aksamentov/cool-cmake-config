@@ -70,4 +70,5 @@ set(COOL_C_AND_CXX_FLAGS " \
 -Wno-zero-as-null-pointer-constant \
 -Wno-conversion \
 -Wno-float-conversion \
+-Wno-unknown-pragmas \
 ")
