@@ -12,8 +12,8 @@ Supported compilers:
 
  - Add this repository as a submodule to your git or download the files you need and copy them over. I like to put CMake include files in `cmake/` directory of my project's root like so:
   
-    mkdir cmake && cd cmake
-    git submodule add https://github.com/ivan-aksamentov/cool-cmake-config.git
+       mkdir cmake && cd cmake
+       git submodule add https://github.com/ivan-aksamentov/cool-cmake-config.git
  
  - Include some or all of the provided files with CMake's `include()` statement (see below)
 
@@ -65,6 +65,46 @@ Create additional build types (the ones you set with `CMAKE_BUILD_TYPE` variable
         cmake -DCMAKE_BUILD_TYPE=TSAN \
               -DCMAKE_C_COMPILER=$(which clang) \
               -DCMAKE_CXX_COMPILER=$(which clang++)
+
+## Cool CUDA flags
+
+    include(CoolCUDAFlags)
+    
+Turns on some handy (albeit experimental) features of CUDA toolchain, notable "Extended lambdas" and "Relaxed constexpr"
+    
+
+## Cool fast math
+
+    include(CoolFastMath)
+
+Will add a CMake option (enabled by default) to turn on fast math in Release builds
+
+
+## Cool associative math
+
+    include(CoolAssocMath)
+
+Will add a CMake option (enabled by default) to turn on associative math in Release builds
+
+## Cool native arch
+
+    include(CoolNativeArch)
+    
+Will add a CMake option (enabled by default) to optimize Release build for native architecture of the current machine
+
+## Cool automatic vectorization
+
+    include(CoolVectorize)  
+
+Will add a CMake option (enabled by default) to turn on automatic vectorization in Release builds
+
+## Cool link-time optimization
+
+    include(CoolVectorize)
+
+Will add a CMake option (enabled by default) to enable Link-time optimization (LTO) or Link-time code generation (LTCG) in Release mode if toolchain supports one of those
+
+
 
 ## References
 
